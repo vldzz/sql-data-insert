@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/sql-data-insert/static/css/main.e330b978.chunk.css",
+    "main.js": "/sql-data-insert/static/js/main.b77b12c3.chunk.js",
+    "main.js.map": "/sql-data-insert/static/js/main.b77b12c3.chunk.js.map",
+    "runtime-main.js": "/sql-data-insert/static/js/runtime-main.35482112.js",
+    "runtime-main.js.map": "/sql-data-insert/static/js/runtime-main.35482112.js.map",
+    "static/css/2.071bea3e.chunk.css": "/sql-data-insert/static/css/2.071bea3e.chunk.css",
+    "static/js/2.3e4aa571.chunk.js": "/sql-data-insert/static/js/2.3e4aa571.chunk.js",
+    "static/js/2.3e4aa571.chunk.js.map": "/sql-data-insert/static/js/2.3e4aa571.chunk.js.map",
+    "index.html": "/sql-data-insert/index.html",
+    "precache-manifest.65aeaf88bf6a4728994b98f0d1a31168.js": "/sql-data-insert/precache-manifest.65aeaf88bf6a4728994b98f0d1a31168.js",
+    "service-worker.js": "/sql-data-insert/service-worker.js",
+    "static/css/2.071bea3e.chunk.css.map": "/sql-data-insert/static/css/2.071bea3e.chunk.css.map",
+    "static/css/main.e330b978.chunk.css.map": "/sql-data-insert/static/css/main.e330b978.chunk.css.map",
+    "static/js/2.3e4aa571.chunk.js.LICENSE.txt": "/sql-data-insert/static/js/2.3e4aa571.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.35482112.js",
+    "static/css/2.071bea3e.chunk.css",
+    "static/js/2.3e4aa571.chunk.js",
+    "static/css/main.e330b978.chunk.css",
+    "static/js/main.b77b12c3.chunk.js"
+  ]
+}
