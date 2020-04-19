@@ -7,7 +7,11 @@ import Tooltip from 'rc-tooltip';
 
 
 var tab = "    ";
+var index = [];
 
+for(var i=0; i < data.length; i++){
+  index.push(-1);
+}
 
 const Handle = Slider.Handle;
 
@@ -29,8 +33,9 @@ const handle = (props) => {
 
 
 class Insert {
+
 	static numbers_random(min, max) {
-		return Math.ceil(Math.random() * (max - min) + min);
+		return Math.round(Math.random() * (max - min) + min);
 	  }
 	static numbers_float(){
 		return (Math.random() * (100 - 0) + 0).toFixed(4);
@@ -63,18 +68,33 @@ class Insert {
   /**
    * Nvarchar:
   **/
-  static getName(){
-    return data.names[Math.ceil(Math.random() * ((data.names.length-1) - 0) + 0)];
+  static getName(radio){
+    index[0] = index[0] < data.names.length-1 ? index[0]+1 : 0;
+    var inx = radio != "" ? index[0] : Insert.numbers_random(0, data.names.length-1);
+    return data.names[inx];
   }
-  static getLastName(){
-    return data.last[Math.ceil(Math.random() * ((data.last.length-1) - 0) + 0)];
+  static getLastName(radio){
+    index[1] = index[1] < data.last.length-1 ? index[1]+1 : 0;
+    var inx = radio != "" ? index[1] : Insert.numbers_random(0, data.names.length-1);
+    return data.last[inx];
   }
-  static getCity(){
-    return data.cities[Math.ceil(Math.random() * ((data.cities.length-1) - 0) + 0)];
+  static getCity(radio){
+    index[2] = index[2] < data.cities.length-1 ? index[2]+1 : 0;
+    var inx = radio != "" ? index[2] : Insert.numbers_random(0, data.names.length-1);
+    return data.cities[inx];
   }
-  static getCountry(){
-    return data.countries[Math.ceil(Math.random() * ((data.countries.length-1) - 0) + 0)];
+  static getCountry(radio){
+    index[3] = index[3] < data.countries.length-1 ? index[3]+1 : 0;
+    var inx = radio != "" ? index[3] : Insert.numbers_random(0, data.names.length-1);
+    return data.countries[inx];
   }
+  ///////////////////////////////////////////
+  static getSample(radio){
+    index[99] = index[99] < data.sample.length-1 ? index[99]+1 : 0;
+    var inx = radio != "" ? index[99] : Insert.numbers_random(0, data.sample.length-1);
+    return data.sample[inx];
+  }
+  ///////////////////////////////////////////
   static getDontpadLink(){
     const dontpad = require('dontpad-api');
     const dontPadTarget = 'reactTestDates'; 
@@ -90,14 +110,18 @@ function Result(props){
    */
   Insert.getDontpadLink();
 
-
-  var tableName = props.tableName.value;
   
+  var tableName = props.tableName.value;
   var columns = "\n";
   var coll = "";
+  var bigInts = [];
 
   for(var i = 1; i < props.props.length; i++){
     var radio = "";
+    var v = props.props.length -1 === i ? "" : ", ";
+    
+    
+    var n = props.props[i].selectedOption === "Nvarchar" ? "(128)" : "" ; 
     if(props.props[i].radio === "UQ"){
       radio = "UNIQUE";
     }
@@ -105,25 +129,25 @@ function Result(props){
       radio = "PRIMARY KEY";
     }
 
-    var v = props.props.length -1 === i ? "" : ", ";
 
-    columns += tab + props.props[i].colNameValue + " " + props.props[i].selectedOption + " " + radio + v + "\n";
+    columns += tab + props.props[i].colNameValue + " " + props.props[i].selectedOption + n + " " + radio + v + "\n";
     coll += props.props[i].colNameValue + v;
   }
 
-  var createTable = "CREATE TABLE " + tableName + "(" + columns.toLowerCase() + ")\nGO";
-
+  
   /**
    * Table insert data
    */
   //SET DATEFORMAT ymd\nGO 
+
+  var createTable = "CREATE TABLE " + tableName + "(" + columns.toLowerCase() + ")\nGO";
   var insert = "\nINSERT INTO " + props.tableName.value + "( " + coll + ") VALUES\n";
   var values = [];
-
+  var dontpadIndex = 0;
   values.push(insert);
   
-  var dontpadIndex = 0;
-
+  
+  
   for(var j = 1; j < props.sliderRange; j++){
     var row = "(";
     for(var i = 0; i < props.props.length; i++){
@@ -140,7 +164,12 @@ function Result(props){
             break;
 
           case("Tinyint"):
-            row += Insert.numbers_random(0, 255) + v;
+            if(props.props[i].radio === "PK"){
+              row += j + v;
+            }
+            else{
+              row += Insert.numbers_random(0, 255) + v;
+            }
             break;
 
           case("Int"):
@@ -158,7 +187,18 @@ function Result(props){
             break;
 
           case("Bigint"):
+          if(props.props[i].radio === "PK"){
+            var m = Insert.numbers() + "" + Insert.numbers() + "" + Insert.numbers();
+            
+            while(bigInts.includes(m)){
+              m = Insert.numbers() + "" + Insert.numbers() + "" + Insert.numbers();
+            }
+
+            row += m + v;
+          }
+          else{
             row += Insert.numbers() + "" + Insert.numbers() + "" + Insert.numbers() + v;
+          }
             break;
 
           case("Float"):
@@ -180,17 +220,22 @@ function Result(props){
           case("Nvarchar"):
             switch(props.props[i].selectedDataOption){
               case("Names"):
-                row += "'" + Insert.getName() + "'" + v;
+                row += "'" + Insert.getName(radio) + "'" + v;
                 break;
               case("Last Name"):
-                row += "'" + Insert.getLastName() + "'" + v;
+                row += "'" + Insert.getLastName(radio) + "'" + v;
                 break;
               case("Cities"):
-                row += "'" + Insert.getCity() + "'" + v;
+                row += "'" + Insert.getCity(radio) + "'" + v;
                 break;
               case("Countries"):
-                row += "'" + Insert.getCountry() + "'" + v;
+                row += "'" + Insert.getCountry(radio) + "'" + v;
                 break;
+              ///////////////////////////////////////////
+              case("Sample"):
+                row += "[']" + Insert.getSample(radio) + "[']" + v;
+                break;
+              ///////////////////////////////////////////
               case("Dontpad link"):
                 console.log("Under construction");
                 break;  

@@ -36,23 +36,3 @@ function App() {
 }
 
 export default App;
-
-
-
-/**
- * TODO:
- * 
- * Add dontpad link with data for columns
- * In donpad will be like "data1 data2 data3" 
- * And then with .split(" ")
- * 
- * 
- * 
- * If is more than 5+ columns in list, change css style for height
- * 
- * 
- * 
- * 
- * Copy to clipboard button (fix)
- * 
- */

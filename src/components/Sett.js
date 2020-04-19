@@ -54,6 +54,7 @@ class Sett extends React.Component{
         intRange: false,
         intRanges: [-10000, 10000],
         dontpadOn: false,
+        constranints: false,
         columns: [
           {}
       ]
@@ -94,19 +95,22 @@ class Sett extends React.Component{
     addColumn = () => {
         var col = this.state.columns;
         var e = document.getElementById("typeSelection");
-        var radio1 = document.getElementById("inlineRadio1").checked;
-        var radio2 = document.getElementById("inlineRadio2").checked;
         var radio = "";
         var colNameValue = document.getElementById("columnName").value.toLowerCase();
         var selectedOption = e.options[e.selectedIndex].text;
+        var radio1 = "";
+        var radio2 = "";
 
-
-
-        if(radio1){
-          radio = "PK";
-        }
-        if(radio2){
-          radio = "UQ";
+        //If contains constraints
+        if(this.state.constranints){
+          radio1 = document.getElementById("inlineRadio1").checked;
+          radio2 = document.getElementById("inlineRadio2").checked;
+          if(radio1){
+            radio = "PK";
+          }
+          if(radio2){
+            radio = "UQ";
+          }
         }
   
         if(selectedOption === "Int Range")
@@ -260,6 +264,17 @@ class Sett extends React.Component{
           intRange: false
         })
       }
+
+      if(selectedOption === "Int" || selectedOption === "Tinyint" || selectedOption === "Bigint" || selectedOption === "Nvarchar"){
+        this.setState({
+          constranints: true
+        })
+      }
+      else{
+        this.setState({
+          constranints: false
+        })
+      }
     }
     selectedDataOptionToggle = () => {
   
@@ -340,6 +355,24 @@ class Sett extends React.Component{
         </div>
       );
     }
+    radioButtons(){
+      return(
+        <div className="radioButtonGroup">
+        <div className="form-check form-check-inline">
+          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"/>
+          <label className="form-check-label" htmlFor="inlineRadio1">Primary Key</label>
+        </div>
+        <div className="form-check form-check-inline">
+          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"/>
+          <label className="form-check-label" htmlFor="inlineRadio2">Unique</label>
+        </div>
+        <div className="form-check form-check-inline">
+          <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"/>
+          <label className="form-check-label" htmlFor="inlineRadio3">None</label>
+        </div>
+      </div>
+      )
+    }
   
     inputs(){
       var col = [];
@@ -418,21 +451,8 @@ class Sett extends React.Component{
           {this.state.intRange ? 
               <Range defaultValue={[0, 600]} min={-1000} max={5000} step={100} handle={handle} pushable={true} onChange={this.changeIntRange} />
           : "" }
-          <div className="radioButtonGroup">
-            <div className="form-check form-check-inline">
-              <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"/>
-              <label className="form-check-label" htmlFor="inlineRadio1">Primary Key</label>
-            </div>
-            <div className="form-check form-check-inline">
-              <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"/>
-              <label className="form-check-label" htmlFor="inlineRadio2">Unique</label>
-            </div>
-            <div className="form-check form-check-inline">
-              <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"/>
-              <label className="form-check-label" htmlFor="inlineRadio3">None</label>
-            </div>
-          </div>
-  
+          {this.state.constranints ? this.radioButtons() : ""}
+
           <button type="button" className="btn btn-success btn-lg btn-block addColumn" id="addColumn" onClick={this.addColumn}>Add column</button>
   
         <ul className="list-group col-list-group">
