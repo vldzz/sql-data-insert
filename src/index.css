@@ -1,13 +1,121 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-bottom-right{
+  display: flex;
+  justify-content: right;
+  align-items: flex-end;
+}
+.input-group{
+  margin-top: 1vh !important;
+  margin-bottom: 1vh !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.divRoot{
+  background-color: #2f4f4f;
+  height: 99vh;
+  margin: 0.2% 0.2%;
+  border-radius: 10px;
 }
+
+.sett{
+  background-color: blueviolet;
+  width: 40%;
+  height: 85vh;
+}
+
+
+.navBarClass{
+  margin-bottom: 1%;
+}
+
+.radioButtonGroup{
+  margin-bottom: 1vh !important;
+}
+
+.addColumn{
+  margin-bottom: 2vh;
+}
+
+.alertClass{
+  position: relative;
+  float: left;
+  align-self: flex-end;
+  margin-top: -10%;
+}
+
+.container>textarea{
+  width: 100%;
+  height: 100%;
+}
+.result>.container{
+  width: 100%;
+  height: 95%;
+  margin-top: 3%;
+}
+
+.slider{
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.mod{
+  position: absolute;
+  width: 50%;
+  z-index: 99;
+}
+
+.back-mod{
+  background-color: #2f4f4f;
+  z-index: 90;
+  display: flex;
+  align-self: flex-start;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.col-list-group{
+  max-height: 300px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.textAreaResult{
+  font-family: 'Courier New', Courier, monospace;
+  background-color: honeydew; 
+  overflow-x: hidden;
+}
+
+.result{
+  background-color: honeydew;
+}
+
+
+
+
+/*Scroll bar */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gray; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: gray; 
+}  
