@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "769a5455dd2275b33e134939d5729160",
+    "revision": "3ab62b78b876e1d7eb41f92a1d40d3b0",
     "url": "/sql-data-insert/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/sql-data-insert/static/css/2.071bea3e.chunk.css"
   },
   {
-    "revision": "5b990e347bb7408c9e40",
+    "revision": "cba4a8f12caf49e7b46c",
     "url": "/sql-data-insert/static/css/main.e330b978.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/sql-data-insert/static/js/2.3e4aa571.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5b990e347bb7408c9e40",
-    "url": "/sql-data-insert/static/js/main.b77b12c3.chunk.js"
+    "revision": "cba4a8f12caf49e7b46c",
+    "url": "/sql-data-insert/static/js/main.f35b8a2e.chunk.js"
   },
   {
     "revision": "70734de403d36989867a",
