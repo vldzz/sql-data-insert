@@ -11,8 +11,11 @@
     "bootstrap": "^4.4.1",
     "devextreme-react": "^19.2.7",
     "dontpad-api": "^1.0.5",
+    "firebase": "^7.14.1",
+    "fontawesome": "^5.6.3",
     "get-dontpad": "^1.0.3",
     "jquery": "^3.4.1",
+    "mysql": "^2.18.1",
     "popper": "^1.0.1",
     "rc-slider": "^9.2.4",
     "rc-tooltip": "^4.0.3",
@@ -22,8 +25,10 @@
     "react-scripts": "3.4.1",
     "react-spring": "^8.0.27",
     "react-toast-notifications": "^2.4.0",
+    "save": "^2.4.0",
     "slider": "^1.0.4",
-    "toasted-notes": "^3.2.0"
+    "toasted-notes": "^3.2.0",
+    "universal-cookie": "^4.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -49,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "gh-pages": "^2.2.0"
   }
 }

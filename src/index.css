@@ -26,6 +26,22 @@
   height: 85vh;
 }
 
+@media(max-width: 800px){
+  .sett{
+    width: 100%;
+  }
+  .flex-column-custom{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .divRoot{
+    height: 200vh;
+  }
+  .result{
+    height: 100vh;
+  }
+}
 
 .navBarClass{
   margin-bottom: 1%;

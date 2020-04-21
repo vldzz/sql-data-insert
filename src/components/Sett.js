@@ -4,10 +4,10 @@ import 'toasted-notes/src/styles.css';
 import Result from './Insert.js'
 import Slider, {Range} from 'rc-slider';
 import Tooltip from 'rc-tooltip';
+import firebase from './config';
 
 
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
-const RangeSlider = createSliderWithTooltip(Slider.Range);
+
 const Handle = Slider.Handle;
 
 const handle = (props) => {
@@ -25,6 +25,7 @@ const handle = (props) => {
   );
 };
 
+var ret;
 
 
 
@@ -44,6 +45,10 @@ class Sett extends React.Component{
     constructor(){
       super();
       this.countAdd = 0;
+      
+      
+     // readWebAccesedData()
+      
       this.state = {
         createButtonClicked: true, ///Change to false
         existSomeCode: true,       ///Change to false
@@ -52,20 +57,48 @@ class Sett extends React.Component{
         sliderRange: 50,
         dataType: false,
         intRange: false,
+        statistics: {totalAccesed: 0},
         intRanges: [-10000, 10000],
         dontpadOn: false,
         constranints: false,
         columns: [
           {}
       ]
-      };
-      
-      
+    };
+
+    
+   
+    this.writeWebAccesedData = this.writeWebAccesedData.bind(this);
+    //this.readWebAccesedData = this.readWebAccesedData.bind(this);
+    
+
+
       this.keyPress = this.keyPress.bind(this);
     }
+  //////////////////////////////////////////////////////////////////////////////////
+
+    writeWebAccesedData = (col) => {
+      var column_state = {
+        columnNameValue: col.colNameValue,
+        selectedOption: col.selectedOption,
+        radio: col.radio
+      }
+      firebase.database().ref('/statistics/col').push(column_state);
+    }
+
+    // readWebAccesedData = () => {
+    //   firebase.database().ref('/statistics/col').on('value', querySnapShot => {
+    //     this.setState({
+    //       statistics : querySnapShot + "+++"
+    //     })
+    //   })
+    //   console.log(this.state.statistics)
+    // }
     
-  
-  
+      
+    
+    
+  //////////////////////////////////////////////////////////////////////////////////
     toogleCreateTable () {
       if(!this.state.createButtonClicked)
         this.setState(
@@ -197,6 +230,9 @@ class Sett extends React.Component{
             toast.notify("There can be only one Primary Key");
           }
         }
+
+
+        this.writeWebAccesedData(col[col.length-1]);
     }
   
     
@@ -474,7 +510,7 @@ class Sett extends React.Component{
   
     render() {
       return(
-        <div className="d-flex workbench">
+        <div className="d-flex flex-column-custom workbench">
           <div className={
             this.state.createButtonClicked ? "flex-fill sett container" : "flex-fill flex-center sett"}>
             {
