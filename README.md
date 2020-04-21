@@ -1,3 +1,6 @@
+Published at (https://vlad-code-c.github.io/sql-data-insert/)[https://vlad-code-c.github.io/sql-data-insert/]  
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
