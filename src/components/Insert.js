@@ -56,12 +56,12 @@ class Insert {
 		return  "'" + d + "'";
   }
   static time(){
-    var t = this.numbers_random(0, 23) + "." + this.numbers_random(0, 59) + "." + this.numbers_random(0, 59);
+    var t = this.numbers_random(0, 23) + ":" + this.numbers_random(0, 59) + ":" + this.numbers_random(0, 59);
     return "'" + t + "'";
   }
   static dateTime(){
     var d = this.numbers_random(2000, 2019) + "." + this.numbers_random(1, 12) + "." + this.numbers_random(1, 29); 
-    var t = this.numbers_random(0, 23) + "." + this.numbers_random(0, 59) + "." + this.numbers_random(0, 59);
+    var t = this.numbers_random(0, 23) + ":" + this.numbers_random(0, 59) + ":" + this.numbers_random(0, 59);
     return "'" + d + " " + t + "'";
   }
   
@@ -117,16 +117,19 @@ function Result(props){
   var bigInts = [];
 
   for(var i = 1; i < props.props.length; i++){
-    var radio = "";
+    var radio = "(128)";
+    var n = "";
     var v = props.props.length -1 === i ? "" : ", ";
     
-    
-    var n = props.props[i].selectedOption === "Nvarchar" ? "(128)" : "" ; 
-    if(props.props[i].radio === "UQ"){
-      radio = "UNIQUE";
-    }
-    if(props.props[i].radio === "PK"){
-      radio = "PRIMARY KEY";
+
+    if(props.props[i].selectedOption !== "Nvarchar"){ 
+      n = "";  
+      if(props.props[i].radio === "UQ"){
+        radio = "UNIQUE";
+      }
+      if(props.props[i].radio === "PK"){
+        radio = "PRIMARY KEY";
+      }
     }
 
 

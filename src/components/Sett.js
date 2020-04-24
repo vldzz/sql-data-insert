@@ -5,9 +5,9 @@ import Result from './Insert.js'
 import Slider, {Range} from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 import firebase from './config';
+import Cookies from 'universal-cookie' 
 
-
-
+const cookies = new Cookies();
 const Handle = Slider.Handle;
 
 const handle = (props) => {
@@ -42,19 +42,21 @@ function ResultNothing(){
 
 
 class Sett extends React.Component{
-    constructor(){
+    constructor(isAdmin){
       super();
       this.countAdd = 0;
       
-      
-     // readWebAccesedData()
+      isAdmin = isAdmin.isAdmin.isAdmin.isAdmin;
+      this.maxRows = isAdmin ? 300 : 50;
+     
+
       
       this.state = {
         createButtonClicked: true, ///Change to false
-        existSomeCode: true,       ///Change to false
+        existSomeCode: false,       ///Change to false
         tableName: "table1",
         selectedDataOption: 0,
-        sliderRange: 50,
+        sliderRange: 25,
         dataType: false,
         intRange: false,
         statistics: {totalAccesed: 0},
@@ -66,7 +68,6 @@ class Sett extends React.Component{
       ]
     };
 
-    
    
     this.writeWebAccesedData = this.writeWebAccesedData.bind(this);
     //this.readWebAccesedData = this.readWebAccesedData.bind(this);
@@ -76,7 +77,7 @@ class Sett extends React.Component{
       this.keyPress = this.keyPress.bind(this);
     }
   //////////////////////////////////////////////////////////////////////////////////
-
+    //Firebase
     writeWebAccesedData = (col) => {
       var column_state = {
         columnNameValue: col.colNameValue,
@@ -99,6 +100,7 @@ class Sett extends React.Component{
     
     
   //////////////////////////////////////////////////////////////////////////////////
+
     toogleCreateTable () {
       if(!this.state.createButtonClicked)
         this.setState(
@@ -233,17 +235,20 @@ class Sett extends React.Component{
 
 
         this.writeWebAccesedData(col[col.length-1]);
+        if(this.state.columns.length > 1 && !this.state.existSomeCode){
+          this.setState(
+            {existSomeCode: true}
+          )
+        }
     }
   
     
     changeRange = (props) => {
-      console.log(props);
       this.setState(
         {sliderRange: props}
       );
     }
     changeIntRange = (props) => {
-      console.log(props);
       this.setState(
         {intRanges: props}
       )
@@ -453,7 +458,7 @@ class Sett extends React.Component{
           </div>
   
           <div className="slider">
-            <Slider min={0} max={100} defaultValue={50} handle={handle} onChange={this.changeRange} />
+            <Slider min={0} max={this.maxRows} defaultValue={this.state.sliderRange} handle={handle} onChange={this.changeRange} />
           </div>
   
           <div className="input-group mb-3">
