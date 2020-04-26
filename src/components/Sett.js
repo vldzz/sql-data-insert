@@ -40,6 +40,8 @@ function ResultNothing(){
   }
 
 
+  
+
 
 class Sett extends React.Component{
     constructor(isAdmin){

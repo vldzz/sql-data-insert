@@ -257,13 +257,14 @@ function Result(props){
     val += values[i];
   }
 
+  var toCopy = createTable + val;
 
   return(
     <div className="flex-fill result">
       <div className="container">
-      <CopyToClipboard text={document.getElementsByClassName("textAreaResult").value}>
+      <CopyToClipboard text={toCopy}>
       <textarea readOnly
-          value={createTable + val}
+          value={toCopy}
           className="textAreaResult"
       />
       </CopyToClipboard>

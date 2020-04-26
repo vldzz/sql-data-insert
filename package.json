@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "alertifyjs": "^1.13.1",
     "bootstrap": "^4.4.1",
+    "clickhouse": "^2.1.1",
     "devextreme-react": "^19.2.7",
     "dontpad-api": "^1.0.5",
     "firebase": "^7.14.1",

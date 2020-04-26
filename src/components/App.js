@@ -26,7 +26,6 @@ function Workbench(isAdmin){
     </div>
   );
 }
-
 function Main(isAdmin){
   return (
 
@@ -43,7 +42,7 @@ class App extends React.Component {
   constructor(){
     super();
     
-    var cook = cookies.get('secretToken') === userName1 || cookies.get('secretToken') === userName1 === userName2 ? true : false;
+    var cook = cookies.get('secretToken') === adminName || cookies.get('secretToken') === userName1 || cookies.get('secretToken') === userName2 ? true : false;
     var admin = cookies.get('secretToken') === adminName ? true : false;
     this.state = {
       isLogged: cook,
@@ -75,19 +74,6 @@ class App extends React.Component {
        else{
          toaster.notify("Incorect token")
        }
-
-      // firebase.database().ref('/Users/').on("value", function(snapshot) {
-      //   if(snapshot.val()[0] === email && snapshot.val()[1] === password){
-      //     console.log("connected")
-      //   }
-      //   else{
-      //     console.log(snapshot.val()[0])
-      //     console.log(snapshot.val())
-      //     console.log("unconected")
-      //   }
-      // }, function (errorObject) {
-      //   console.log("The read failed: " + errorObject.code);
-      // });
       
     }
 
