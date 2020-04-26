@@ -128,6 +128,120 @@ class Sett extends React.Component{
     
       return true;
     }
+
+    changeRange = (props) => {
+      this.setState(
+        {sliderRange: props}
+      );
+    }
+    changeIntRange = (props) => {
+      this.setState(
+        {intRanges: props}
+      )
+    }
+  
+  
+    
+    tableNameChanged(){
+      var d = document.getElementById("tableName");
+      d.value = d.value.replace(' ', '');
+      d.value = d.value.replace(',', '');
+      d.value = d.value.replace('.', '');
+      this.setState(
+        {tableName: d}
+      )
+    }
+    columnNameChanged(){
+      var d = document.getElementById("columnName");
+      d.value = d.value.replace(' ', '');
+      d.value = d.value.replace(',', '');
+      d.value = d.value.replace('.', '');
+    }
+    selectionCustomToggleOn(){
+      this.setState(
+        {dontpadOn: true}
+      )
+    }
+    selectionCustomToggleOff(){
+      this.setState(
+        {dontpadOn: false}
+      )
+    }
+    selectedOptioToggle = () => {
+      var e = document.getElementById("typeSelection");
+      var selectedOption = e.options[e.selectedIndex].text;
+      if(selectedOption === "Nvarchar"){
+        this.setState({
+          dataType: true
+        })
+      }
+      else{
+        this.setState({
+          dataType: false,
+          dontpadOn: false
+        })
+      }
+  
+      if(selectedOption === "Int Range"){
+        this.setState({
+          intRange: true
+        })
+      }
+      else{
+        this.setState({
+          intRange: false
+        })
+      }
+
+      if(selectedOption === "Int" || selectedOption === "Tinyint" || selectedOption === "Bigint" || selectedOption === "Nvarchar"){
+        this.setState({
+          constranints: true
+        })
+      }
+      else{
+        this.setState({
+          constranints: false
+        })
+      }
+    }
+    selectedDataOptionToggle = () => {
+  
+      var e = document.getElementById("typeDataSelection");
+      var selectedOption = e.options[e.selectedIndex].text;
+  
+      if(selectedOption === "Custom list" || selectedOption === "Custom list nvarchar"){
+        this.selectionCustomToggleOn();
+      }
+      else{
+        this.selectionCustomToggleOff();      
+      }
+    }
+  
+    
+    removeFromState(index){
+      console.log(index);
+  
+      var arr = this.state.columns;
+      var removed = [];
+      
+      for(var i = 0; i < arr.length; i++){
+        if(i != index){
+          removed.push(arr[i]);
+        }
+      }
+  
+      this.setState(
+      {columns: removed}
+      );
+    }
+    
+
+    keyPress(e){
+      if(e.keyCode == 13){
+         this.addColumn();
+      }
+   }
+  
   
     addColumn = () => {
         var col = this.state.columns;
@@ -152,6 +266,7 @@ class Sett extends React.Component{
   
         if(selectedOption === "Int Range")
           selectedOption = "Int";
+        
   
         if(colNameValue !== "" && e.selectedIndex !== 0 && this.notExistYet(colNameValue) && this.notExistPrimary(radio) && !this.state.dataType && !this.state.intRange){
           var intRangeState = false;
@@ -177,18 +292,31 @@ class Sett extends React.Component{
           else{
               var d = document.getElementById("typeDataSelection");
               var selectedDataOption = d.options[d.selectedIndex].text;
-              var intRangeState = false;
-                    
-              col.push(
+              var intRangeState = false;      
+              var customList = document.getElementById("customList");
+
+              if(d === "Custom list" || d === "Custom list nvarchar"){
+                col.push(
+                    {
+                    colNameValue,
+                    selectedOption,
+                    radio,
+                    selectedDataOption,
+                    intRangeState
+                    }
+                );   
+              } else{
+                col.push(
                   {
                   colNameValue,
                   selectedOption,
                   radio,
                   selectedDataOption,
-                  intRangeState
+                  intRangeState,
+                  customList
                   }
-              );   
-                      
+                );
+              }
               //Clear value
               document.getElementById("columnName").value = "";
       
@@ -236,127 +364,15 @@ class Sett extends React.Component{
         }
 
 
-        this.writeWebAccesedData(col[col.length-1]);
-        if(this.state.columns.length > 1 && !this.state.existSomeCode){
-          this.setState(
-            {existSomeCode: true}
-          )
-        }
+        try {
+          this.writeWebAccesedData(col[col.length-1]);
+          if(this.state.columns.length > 1 && !this.state.existSomeCode){
+            this.setState(
+              {existSomeCode: true}
+            )
+          }
+          } catch (error) {}
     }
-  
-    
-    changeRange = (props) => {
-      this.setState(
-        {sliderRange: props}
-      );
-    }
-    changeIntRange = (props) => {
-      this.setState(
-        {intRanges: props}
-      )
-    }
-  
-  
-    
-    tableNameChanged(){
-      var d = document.getElementById("tableName");
-      d.value = d.value.replace(' ', '');
-      d.value = d.value.replace(',', '');
-      d.value = d.value.replace('.', '');
-      this.setState(
-        {tableName: d}
-      )
-    }
-    columnNameChanged(){
-      var d = document.getElementById("columnName");
-      d.value = d.value.replace(' ', '');
-      d.value = d.value.replace(',', '');
-      d.value = d.value.replace('.', '');
-    }
-    selectionDontpadToggleOn(){
-      this.setState(
-        {dontpadOn: true}
-      )
-    }
-    selectionDontpadToggleOff(){
-      this.setState(
-        {dontpadOn: false}
-      )
-    }
-    selectedOptioToggle = () => {
-      var e = document.getElementById("typeSelection");
-      var selectedOption = e.options[e.selectedIndex].text;
-      if(selectedOption === "Nvarchar"){
-        this.setState({
-          dataType: true
-        })
-      }
-      else{
-        this.setState({
-          dataType: false
-        })
-      }
-  
-      if(selectedOption === "Int Range"){
-        this.setState({
-          intRange: true
-        })
-      }
-      else{
-        this.setState({
-          intRange: false
-        })
-      }
-
-      if(selectedOption === "Int" || selectedOption === "Tinyint" || selectedOption === "Bigint" || selectedOption === "Nvarchar"){
-        this.setState({
-          constranints: true
-        })
-      }
-      else{
-        this.setState({
-          constranints: false
-        })
-      }
-    }
-    selectedDataOptionToggle = () => {
-  
-      var e = document.getElementById("typeDataSelection");
-      var selectedOption = e.options[e.selectedIndex].text;
-  
-      if(selectedOption === "Dontpad link"){
-        this.selectionDontpadToggleOn();
-      }
-      else{
-        this.selectionDontpadToggleOff();      
-      }
-    }
-  
-  
-    removeFromState(index){
-      console.log(index);
-  
-      var arr = this.state.columns;
-      var removed = [];
-      
-      for(var i = 0; i < arr.length; i++){
-        if(i != index){
-          removed.push(arr[i]);
-        }
-      }
-  
-      this.setState(
-      {columns: removed}
-      );
-    }
-    
-
-    keyPress(e){
-      if(e.keyCode == 13){
-         this.addColumn();
-      }
-   }
-    
   
   
     nothing (){
@@ -380,7 +396,8 @@ class Sett extends React.Component{
               <option value="2">Last Name</option>
               <option value="3">Cities</option>
               <option value="4">Countries</option>
-              <option value="5">Dontpad link</option>
+              <option value="5">Custom list</option>
+              <option value="6">Custom list nvarchar</option>
             </select>
           </div>
         </>
@@ -393,7 +410,7 @@ class Sett extends React.Component{
             <div className="input-group-prepend">
               <span className="input-group-text">Link</span>
             </div>
-            <input type="text" className="form-control" placeholder="Dontpad Link" aria-label="dontpadLink" id="dontpadLink"/>
+            <input type="text" className="form-control" placeholder="Custom list" aria-label="customList" id="customList"/>
           </div>
         </div>
       );

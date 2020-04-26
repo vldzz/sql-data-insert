@@ -108,8 +108,8 @@ function Result(props){
   /**
    * Table create
    */
-  Insert.getDontpadLink();
-
+  //  Insert.getDontpadLink();
+  
   
   var tableName = props.tableName.value;
   var columns = "\n";
@@ -148,8 +148,13 @@ function Result(props){
   var values = [];
   var dontpadIndex = 0;
   values.push(insert);
-  
-  
+  var type = 0;       //0 - num, 1 - alpha
+  var customList;
+
+  var customIndex = [];
+  for(var i = 0; i < props.props.length; i++){
+    customIndex.push(0);
+  }
   
   for(var j = 1; j < props.sliderRange; j++){
     var row = "(";
@@ -239,10 +244,25 @@ function Result(props){
                 row += "[']" + Insert.getSample(radio) + "[']" + v;
                 break;
               ///////////////////////////////////////////
-              case("Dontpad link"):
-                console.log("Under construction");
+              case("Custom list"):
+                customList = props.props[i].customList.value;
+
+                if(customIndex[i] >= customList.split(" ").length){
+                  customIndex[i] = 0;
+                }
+                  row += customList.split(" ")[customIndex[i]] + v;
+                  customIndex[i]++;
                 break;  
-            }
+              case("Custom list nvarchar"):
+                customList = props.props[i].customList.value;
+
+                if(customIndex[i] >= customList.split(" ").length){
+                  customIndex[i] = 0;
+                }
+                row += "'" + customList.split(" ")[customIndex[i]] + "'" + v;
+                customIndex[i]++;
+              break;  
+              }
             break;
 			}
     }
