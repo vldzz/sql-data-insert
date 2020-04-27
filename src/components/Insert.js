@@ -245,7 +245,7 @@ function Result(props){
                 break;
               ///////////////////////////////////////////
               case("Custom list"):
-                customList = props.props[i].customList.value;
+                customList = props.props[i].customList;
 
                 if(customIndex[i] >= customList.split(" ").length){
                   customIndex[i] = 0;
@@ -254,7 +254,8 @@ function Result(props){
                   customIndex[i]++;
                 break;  
               case("Custom list nvarchar"):
-                customList = props.props[i].customList.value;
+                customList = props.props[i].customList;
+                console.log(props.props[i].customList)
 
                 if(customIndex[i] >= customList.split(" ").length){
                   customIndex[i] = 0;
