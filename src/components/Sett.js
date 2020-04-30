@@ -293,7 +293,9 @@ class Sett extends React.Component{
               var d = document.getElementById("typeDataSelection");
               var selectedDataOption = d.options[d.selectedIndex].text;
               var intRangeState = false;      
-              var customList = document.getElementById("customList").value;
+              var cstmLst = document.getElementById("customList");
+              
+              var customList = cstmLst !== null ? cstmLst.value : null;
 
 
               if(d === "Custom list" || d === "Custom list nvarchar"){
