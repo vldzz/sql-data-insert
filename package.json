@@ -12,7 +12,7 @@
     "clickhouse": "^2.1.1",
     "devextreme-react": "^19.2.7",
     "dontpad-api": "^1.0.5",
-    "firebase": "^7.14.1",
+    "firebase": "^10.9.0",
     "fontawesome": "^5.6.3",
     "get-dontpad": "^1.0.3",
     "jquery": "^3.4.1",
