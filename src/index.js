@@ -1,12 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from  './components/App';
+import ModernApp from './components/ModernApp';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('root')
-  );
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <ModernApp />
+        </ThemeProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
+  </React.StrictMode>
+);
   
   
 // If you want your app to work offline and load faster, you can change
