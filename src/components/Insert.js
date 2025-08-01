@@ -94,14 +94,7 @@ class Insert {
     var inx = radio != "" ? index[99] : Insert.numbers_random(0, data.sample.length-1);
     return data.sample[inx];
   }
-  ///////////////////////////////////////////
-  static getDontpadLink(){
-    const dontpad = require('dontpad-api');
-    const dontPadTarget = 'reactTestDates'; 
-
-    dontpad.writeContent(dontPadTarget, 'This is a test ')
-
-  } 
+ 
 }
 
 function Result(props){

@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import faker from 'faker';
 
 export class EnhancedDataGenerator {
   static numbers_random(min, max) {
@@ -177,11 +177,7 @@ export class EnhancedDataGenerator {
     return "'" + faker.lorem.word() + "'";
   }
 
-  static getDontpadLink() {
-    const dontpad = require('dontpad-api');
-    const dontPadTarget = 'reactTestDates';
-    dontpad.writeContent(dontPadTarget, 'This is a test');
-  }
+
 }
 
 export default EnhancedDataGenerator;
