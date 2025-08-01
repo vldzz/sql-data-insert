@@ -1,26 +1,13 @@
 {
   "files": {
-    "main.css": "/sql-data-insert/static/css/main.8fbd80fd.chunk.css",
-    "main.js": "/sql-data-insert/static/js/main.1cc58eb5.chunk.js",
-    "main.js.map": "/sql-data-insert/static/js/main.1cc58eb5.chunk.js.map",
-    "runtime-main.js": "/sql-data-insert/static/js/runtime-main.35482112.js",
-    "runtime-main.js.map": "/sql-data-insert/static/js/runtime-main.35482112.js.map",
-    "static/css/2.4e22c7f3.chunk.css": "/sql-data-insert/static/css/2.4e22c7f3.chunk.css",
-    "static/js/2.1017218b.chunk.js": "/sql-data-insert/static/js/2.1017218b.chunk.js",
-    "static/js/2.1017218b.chunk.js.map": "/sql-data-insert/static/js/2.1017218b.chunk.js.map",
+    "main.css": "/sql-data-insert/static/css/main.db7f2068.css",
+    "main.js": "/sql-data-insert/static/js/main.8181ad53.js",
     "index.html": "/sql-data-insert/index.html",
-    "precache-manifest.cd0de809e35772a82d48f623a49500d5.js": "/sql-data-insert/precache-manifest.cd0de809e35772a82d48f623a49500d5.js",
-    "service-worker.js": "/sql-data-insert/service-worker.js",
-    "static/css/2.4e22c7f3.chunk.css.map": "/sql-data-insert/static/css/2.4e22c7f3.chunk.css.map",
-    "static/css/main.8fbd80fd.chunk.css.map": "/sql-data-insert/static/css/main.8fbd80fd.chunk.css.map",
-    "static/js/2.1017218b.chunk.js.LICENSE.txt": "/sql-data-insert/static/js/2.1017218b.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/sql-data-insert/static/media/whatisthis.4b53f8d5.jpg"
+    "main.db7f2068.css.map": "/sql-data-insert/static/css/main.db7f2068.css.map",
+    "main.8181ad53.js.map": "/sql-data-insert/static/js/main.8181ad53.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.35482112.js",
-    "static/css/2.4e22c7f3.chunk.css",
-    "static/js/2.1017218b.chunk.js",
-    "static/css/main.8fbd80fd.chunk.css",
-    "static/js/main.1cc58eb5.chunk.js"
+    "static/css/main.db7f2068.css",
+    "static/js/main.8181ad53.js"
   ]
 }
