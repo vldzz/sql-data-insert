@@ -249,7 +249,7 @@ class MySQLGenerator extends BaseGenerator {
 
   generateStoredProcedure(tableName, columns) {
     const columnNames = columns.map(col => col.colNameValue).join(', ');
-    const columnDefinitions = columns.map(col => this.generateColumnDefinition(col));
+    const sampleValues = columns.map(col => this.generateDataValue(col, 1)).join(', ');
     
     return `
 DELIMITER $$
@@ -262,7 +262,7 @@ BEGIN
   
   WHILE i <= p_rowCount DO
     INSERT INTO ${tableName} (${columnNames})
-    VALUES (${columns.map(col => this.generateDataValue(col, i)).join(', ')});
+    VALUES (${sampleValues});
     SET i = i + 1;
   END WHILE;
 END$$
@@ -326,6 +326,7 @@ class PostgreSQLGenerator extends BaseGenerator {
 
   generateStoredProcedure(tableName, columns) {
     const columnNames = columns.map(col => col.colNameValue).join(', ');
+    const sampleValues = columns.map(col => this.generateDataValue(col, 1)).join(', ');
     
     return `
 CREATE OR REPLACE FUNCTION Insert${tableName.charAt(0).toUpperCase() + tableName.slice(1)}Data(p_rowCount INTEGER)
@@ -335,7 +336,7 @@ DECLARE
 BEGIN
   WHILE i <= p_rowCount LOOP
     INSERT INTO ${tableName} (${columnNames})
-    VALUES (${columns.map(col => this.generateDataValue(col, i)).join(', ')});
+    VALUES (${sampleValues});
     i := i + 1;
   END LOOP;
 END;

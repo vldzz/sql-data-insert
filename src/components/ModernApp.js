@@ -6,7 +6,7 @@ import TableTemplates from './TableTemplates';
 import ColumnConfig from './ColumnConfig';
 import SQLResult from './SQLResult';
 import LoadingSpinner from './LoadingSpinner';
-import { Toaster } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 import SQLGenerator from '../utils/sqlGenerators';
 import { FaDatabase, FaCog, FaPlay, FaHistory } from 'react-icons/fa';
 
