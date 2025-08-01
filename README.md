@@ -1,71 +1,201 @@
-Published at [https://vldzz.github.io/sql-data-insert/](https://vldzz.github.io/sql-data-insert/)
+# SQL Data Generator
 
+A modern, feature-rich web application for generating realistic SQL test data with support for multiple database types.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🌟 Features
 
-## Available Scripts
+### Core Functionality
+- **Multi-Database Support**: Generate SQL for MySQL, PostgreSQL, SQL Server, and SQLite
+- **Realistic Data Generation**: Create test data using Faker.js with 30+ data types
+- **Table Templates**: Pre-built templates for common use cases (Users, Products, Library, etc.)
+- **Advanced Column Configuration**: Support for constraints, custom ranges, and data patterns
+- **SQL Export Options**: Generate CREATE, INSERT, Stored Procedures, and Migration scripts
 
-In the project directory, you can run:
+### Modern UI/UX
+- **Dark/Light Mode**: Toggle between themes with persistent settings
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile
+- **Loading States**: Visual feedback during data generation
+- **Error Handling**: Comprehensive error boundaries and validation
+- **Toast Notifications**: User-friendly feedback messages
 
-### `npm start`
+### Data Types & Patterns
+- **Basic Types**: Int, Bigint, Float, Decimal, Money, Date, Time, DateTime
+- **Text Types**: Nvarchar, Text, Email, Phone, SSN, Credit Card
+- **Business Data**: Company, Job Title, Department, Product Name/Description
+- **Location Data**: Address, City, State, Country, Coordinates
+- **Technical Data**: IP Address, URL, Username, Password, UUID, MAC Address
+- **Custom Patterns**: ISBN, Color, Domain, and more
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Advanced Features
+- **History Tracking**: Keep track of generated SQL scripts
+- **Copy to Clipboard**: One-click SQL copying
+- **File Download**: Export SQL scripts as files
+- **Syntax Highlighting**: Beautiful SQL code display
+- **Form Validation**: Real-time validation and error messages
+- **Admin/User Roles**: Different limits and features based on role
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## 🚀 Getting Started
 
-### `npm test`
+### Prerequisites
+- Node.js 16+ 
+- npm or yarn
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd sql-data-generator
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install dependencies:
+```bash
+npm install
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+3. Start the development server:
+```bash
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-### `npm run eject`
+### Build for Production
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm run build
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛠️ Technology Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Frontend
+- **React 18**: Modern React with hooks and functional components
+- **Bootstrap 5**: Responsive UI framework
+- **React Hook Form**: Form handling and validation
+- **React Query**: Data fetching and caching
+- **React Icons**: Beautiful icon library
+- **React Syntax Highlighter**: Code syntax highlighting
+- **React Hot Toast**: Toast notifications
+- **Faker.js**: Realistic data generation
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Development Tools
+- **React Error Boundary**: Error handling
+- **React Router**: Navigation (ready for future expansion)
+- **Webpack Bundle Analyzer**: Bundle optimization
 
-## Learn More
+## 📁 Project Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+src/
+├── components/
+│   ├── ModernApp.js          # Main application component
+│   ├── Navigation.js          # Modern navigation bar
+│   ├── ColumnConfig.js        # Column configuration form
+│   ├── SQLResult.js           # SQL output display
+│   ├── TableTemplates.js      # Pre-built table templates
+│   ├── LoadingSpinner.js      # Loading indicators
+│   └── ErrorBoundary.js       # Error handling
+├── contexts/
+│   └── ThemeContext.js        # Dark/light mode context
+├── utils/
+│   ├── dataGenerators.js      # Enhanced data generation
+│   └── sqlGenerators.js       # Multi-database SQL generation
+└── index.css                  # Modern styling with dark mode
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🎨 UI Improvements
 
-### Code Splitting
+### Modern Design
+- Clean, professional interface
+- Consistent spacing and typography
+- Smooth animations and transitions
+- Accessible color contrast
+- Mobile-first responsive design
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### Dark Mode
+- Automatic theme detection
+- Persistent theme preference
+- Consistent styling across all components
+- Reduced eye strain in low-light environments
 
-### Analyzing the Bundle Size
+### User Experience
+- Intuitive navigation with icons
+- Clear visual hierarchy
+- Helpful tooltips and labels
+- Responsive feedback for all interactions
+- Progressive disclosure of advanced features
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## 🔧 Configuration
 
-### Making a Progressive Web App
+### Database Types
+- **MySQL**: Full support with InnoDB engine
+- **PostgreSQL**: Native PostgreSQL syntax
+- **SQL Server**: T-SQL specific features
+- **SQLite**: Lightweight database support
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Data Generation
+- **Realistic Patterns**: Email, phone, SSN, credit card formats
+- **Custom Ranges**: Integer ranges with min/max values
+- **Custom Lists**: Space-separated custom data lists
+- **Constraints**: Primary key, unique, and foreign key support
 
-### Advanced Configuration
+### Templates
+- **Users Management**: Authentication and user data
+- **E-commerce Products**: Product catalog with pricing
+- **Library Management**: Books and authors
+- **Healthcare Records**: Patient and medical data
+- **Manufacturing**: Inventory and production tracking
+- **Education System**: Students and courses
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## 🚀 Deployment
 
-### Deployment
+### GitHub Pages
+```bash
+npm run deploy
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### Other Platforms
+1. Build the project: `npm run build`
+2. Deploy the `build` folder to your hosting platform
 
-### `npm run build` fails to minify
+## 🔮 Future Enhancements
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Planned Features
+- **Collaboration**: Share table configurations
+- **Version Control**: Track configuration changes
+- **API Integration**: REST API for programmatic access
+- **Plugin System**: Third-party data generators
+- **Analytics Dashboard**: Usage statistics
+- **Bulk Operations**: Generate data for multiple tables
+- **Advanced Relationships**: Foreign key relationships
+- **Data Export**: JSON, CSV, Excel formats
+
+### Technical Improvements
+- **TypeScript**: Full TypeScript migration
+- **Testing**: Comprehensive unit and integration tests
+- **Performance**: Code splitting and lazy loading
+- **PWA**: Progressive Web App capabilities
+- **Offline Support**: Service worker implementation
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Commit changes: `git commit -am 'Add feature'`
+4. Push to branch: `git push origin feature-name`
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🙏 Acknowledgments
+
+- **Faker.js**: For realistic data generation
+- **Bootstrap**: For responsive UI components
+- **React Community**: For excellent documentation and tools
+- **Font Awesome**: For beautiful icons
+
+---
+
+**SQL Data Generator** - Making database testing easier and more realistic since 2024.
