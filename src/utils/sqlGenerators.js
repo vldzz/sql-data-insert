@@ -85,139 +85,137 @@ class BaseGenerator {
   }
 
   generateDataValue(column, rowIndex) {
-    const generator = new EnhancedDataGenerator();
-    
     switch (column.selectedOption) {
       case 'Bit':
         return Math.random() > 0.5 ? 1 : 0;
       
       case 'Tinyint':
         if (column.radio === 'PK') return rowIndex;
-        return generator.numbers_random(0, 255);
+        return EnhancedDataGenerator.numbers_random(0, 255);
       
       case 'Int':
         if (column.intRangeState) {
-          return generator.numbers_random(column.min, column.max);
+          return EnhancedDataGenerator.numbers_random(column.min, column.max);
         }
         if (column.radio === 'PK') return rowIndex;
-        return generator.numbers();
+        return EnhancedDataGenerator.numbers();
       
       case 'Bigint':
         if (column.radio === 'PK') return rowIndex;
-        return generator.numbers() + '' + generator.numbers() + '' + generator.numbers();
+        return EnhancedDataGenerator.numbers() + '' + EnhancedDataGenerator.numbers() + '' + EnhancedDataGenerator.numbers();
       
       case 'Float':
-        return generator.numbers_float();
+        return EnhancedDataGenerator.numbers_float();
       
       case 'Decimal':
       case 'Money':
       case 'Price':
-        return generator.decimal();
+        return EnhancedDataGenerator.decimal();
       
       case 'Date':
-        return generator.date();
+        return EnhancedDataGenerator.date();
       
       case 'Time':
-        return generator.time();
+        return EnhancedDataGenerator.time();
       
       case 'DateTime':
-        return generator.dateTime();
+        return EnhancedDataGenerator.dateTime();
       
       case 'Text':
       case 'ProductDescription':
-        return generator.text();
+        return EnhancedDataGenerator.text();
       
       case 'Email':
-        return generator.email();
+        return EnhancedDataGenerator.email();
       
       case 'Phone':
-        return generator.phone();
+        return EnhancedDataGenerator.phone();
       
       case 'SSN':
-        return generator.ssn();
+        return EnhancedDataGenerator.ssn();
       
       case 'CreditCard':
-        return generator.creditCard();
+        return EnhancedDataGenerator.creditCard();
       
       case 'IPAddress':
-        return generator.ipAddress();
+        return EnhancedDataGenerator.ipAddress();
       
       case 'URL':
-        return generator.url();
+        return EnhancedDataGenerator.url();
       
       case 'Username':
-        return generator.username();
+        return EnhancedDataGenerator.username();
       
       case 'Password':
-        return generator.password();
+        return EnhancedDataGenerator.password();
       
       case 'Company':
-        return generator.company();
+        return EnhancedDataGenerator.company();
       
       case 'JobTitle':
-        return generator.jobTitle();
+        return EnhancedDataGenerator.jobTitle();
       
       case 'Department':
-        return generator.department();
+        return EnhancedDataGenerator.department();
       
       case 'ProductName':
-        return generator.productName();
+        return EnhancedDataGenerator.productName();
       
       case 'ISBN':
-        return generator.isbn();
+        return EnhancedDataGenerator.isbn();
       
       case 'UUID':
-        return generator.uuid();
+        return EnhancedDataGenerator.uuid();
       
       case 'MacAddress':
-        return generator.macAddress();
+        return EnhancedDataGenerator.macAddress();
       
       case 'Color':
-        return generator.color();
+        return EnhancedDataGenerator.color();
       
       case 'Domain':
-        return generator.domain();
+        return EnhancedDataGenerator.domain();
       
       case 'StreetAddress':
-        return generator.streetAddress();
+        return EnhancedDataGenerator.streetAddress();
       
       case 'City':
-        return generator.city();
+        return EnhancedDataGenerator.city();
       
       case 'State':
-        return generator.state();
+        return EnhancedDataGenerator.state();
       
       case 'ZipCode':
-        return generator.zipCode();
+        return EnhancedDataGenerator.zipCode();
       
       case 'Country':
-        return generator.country();
+        return EnhancedDataGenerator.country();
       
       case 'Coordinates':
-        return generator.coordinates();
+        return EnhancedDataGenerator.coordinates();
       
       case 'Nvarchar':
         switch (column.selectedDataOption) {
           case 'Names':
-            return generator.getName();
+            return EnhancedDataGenerator.getName();
           case 'Last Name':
-            return generator.getLastName();
+            return EnhancedDataGenerator.getLastName();
           case 'Cities':
-            return generator.getCity();
+            return EnhancedDataGenerator.getCity();
           case 'Countries':
-            return generator.getCountry();
+            return EnhancedDataGenerator.getCountry();
           case 'Sample':
-            return generator.getSample();
+            return EnhancedDataGenerator.getSample();
           case 'Custom list':
             return this.getCustomListValue(column.customList, rowIndex);
           case 'Custom list nvarchar':
             return `'${this.getCustomListValue(column.customList, rowIndex)}'`;
           default:
-            return generator.getName();
+            return EnhancedDataGenerator.getName();
         }
       
       default:
-        return generator.getName();
+        return EnhancedDataGenerator.getName();
     }
   }
 

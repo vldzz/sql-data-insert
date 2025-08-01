@@ -53,7 +53,7 @@ export class EnhancedDataGenerator {
   }
 
   static phone() {
-    return "'" + faker.phone.number('###-###-####') + "'";
+    return "'" + faker.phone.phoneNumber('###-###-####') + "'";
   }
 
   static ssn() {
@@ -81,11 +81,11 @@ export class EnhancedDataGenerator {
   }
 
   static company() {
-    return "'" + faker.company.name() + "'";
+    return "'" + faker.company.companyName() + "'";
   }
 
   static jobTitle() {
-    return "'" + faker.person.jobTitle() + "'";
+    return "'" + faker.name.jobTitle() + "'";
   }
 
   static department() {
@@ -109,7 +109,7 @@ export class EnhancedDataGenerator {
   }
 
   static uuid() {
-    return "'" + faker.string.uuid() + "'";
+    return "'" + faker.datatype.uuid() + "'";
   }
 
   static macAddress() {
@@ -125,31 +125,31 @@ export class EnhancedDataGenerator {
   }
 
   static streetAddress() {
-    return "'" + faker.location.streetAddress() + "'";
+    return "'" + faker.address.streetAddress() + "'";
   }
 
   static city() {
-    return "'" + faker.location.city() + "'";
+    return "'" + faker.address.city() + "'";
   }
 
   static state() {
-    return "'" + faker.location.state() + "'";
+    return "'" + faker.address.state() + "'";
   }
 
   static zipCode() {
-    return "'" + faker.location.zipCode() + "'";
+    return "'" + faker.address.zipCode() + "'";
   }
 
   static country() {
-    return "'" + faker.location.country() + "'";
+    return "'" + faker.address.country() + "'";
   }
 
   static latitude() {
-    return faker.location.latitude();
+    return faker.address.latitude();
   }
 
   static longitude() {
-    return faker.location.longitude();
+    return faker.address.longitude();
   }
 
   static coordinates() {
@@ -158,19 +158,19 @@ export class EnhancedDataGenerator {
 
   // Legacy methods for backward compatibility
   static getName(radio) {
-    return "'" + faker.person.firstName() + "'";
+    return "'" + faker.name.firstName() + "'";
   }
 
   static getLastName(radio) {
-    return "'" + faker.person.lastName() + "'";
+    return "'" + faker.name.lastName() + "'";
   }
 
   static getCity(radio) {
-    return "'" + faker.location.city() + "'";
+    return "'" + faker.address.city() + "'";
   }
 
   static getCountry(radio) {
-    return "'" + faker.location.country() + "'";
+    return "'" + faker.address.country() + "'";
   }
 
   static getSample(radio) {

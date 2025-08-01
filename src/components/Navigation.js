@@ -2,16 +2,23 @@ import React, { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import { FaDatabase, FaCog, FaHistory, FaShare, FaMoon, FaSun, FaBars, FaTimes } from 'react-icons/fa';
 
-const Navigation = () => {
+const Navigation = ({ onSectionChange }) => {
   const { isDarkMode, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'Generator', icon: <FaDatabase />, href: '#generator' },
-    { name: 'Templates', icon: <FaCog />, href: '#templates' },
-    { name: 'History', icon: <FaHistory />, href: '#history' },
-    { name: 'Share', icon: <FaShare />, href: '#share' }
+    { name: 'Generator', icon: <FaDatabase />, href: '#generator', section: 'generator' },
+    { name: 'Templates', icon: <FaCog />, href: '#templates', section: 'templates' },
+    { name: 'History', icon: <FaHistory />, href: '#history', section: 'history' },
+    { name: 'Share', icon: <FaShare />, href: '#share', section: 'share' }
   ];
+
+  const handleNavClick = (e, section) => {
+    e.preventDefault();
+    if (onSectionChange) {
+      onSectionChange(section);
+    }
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -39,7 +46,11 @@ const Navigation = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             {navItems.map((item, index) => (
               <li key={index} className="nav-item">
-                <a className="nav-link d-flex align-items-center" href={item.href}>
+                <a 
+                  className="nav-link d-flex align-items-center" 
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.section)}
+                >
                   {item.icon}
                   <span className="ms-1">{item.name}</span>
                 </a>

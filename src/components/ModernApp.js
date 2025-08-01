@@ -8,7 +8,7 @@ import SQLResult from './SQLResult';
 import LoadingSpinner from './LoadingSpinner';
 import { Toaster, toast } from 'react-hot-toast';
 import SQLGenerator from '../utils/sqlGenerators';
-import { FaDatabase, FaCog, FaPlay, FaHistory } from 'react-icons/fa';
+import { FaDatabase, FaCog, FaPlay, FaHistory, FaShare } from 'react-icons/fa';
 
 const ModernApp = () => {
   const { isDarkMode } = useTheme();
@@ -123,6 +123,10 @@ const ModernApp = () => {
     setTableName(value);
   };
 
+  const handleSectionChange = (section) => {
+    setActiveSection(section);
+  };
+
   if (!isLoggedIn) {
     return <LoginScreen onLogin={handleLogin} />;
   }
@@ -131,7 +135,7 @@ const ModernApp = () => {
     <div className={`app ${isDarkMode ? 'dark-mode' : ''}`}>
       <Toaster position="top-right" />
       
-      <Navigation onLogout={handleLogout} />
+      <Navigation onLogout={handleLogout} onSectionChange={handleSectionChange} />
       
       <div className="container-fluid mt-4">
         <div className="row">
@@ -313,6 +317,73 @@ const ModernApp = () => {
                           </table>
                         </div>
                       )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeSection === 'share' && (
+              <div className="row">
+                <div className="col-12">
+                  <div className="card">
+                    <div className="card-header">
+                      <h6 className="mb-0">
+                        <FaShare className="me-2" />
+                        Share Configuration
+                      </h6>
+                    </div>
+                    <div className="card-body">
+                      <div className="row">
+                        <div className="col-md-6">
+                          <h6>Export Configuration</h6>
+                          <p className="text-muted">Share your current table configuration with others.</p>
+                          <button 
+                            className="btn btn-primary"
+                            onClick={() => {
+                              const config = {
+                                tableName,
+                                columns,
+                                databaseType,
+                                rowCount
+                              };
+                              const configString = JSON.stringify(config, null, 2);
+                              navigator.clipboard.writeText(configString);
+                              toast.success('Configuration copied to clipboard!');
+                            }}
+                          >
+                            Copy Configuration
+                          </button>
+                        </div>
+                        <div className="col-md-6">
+                          <h6>Import Configuration</h6>
+                          <p className="text-muted">Paste a configuration to load it.</p>
+                          <textarea
+                            className="form-control mb-2"
+                            rows="4"
+                            placeholder="Paste configuration JSON here..."
+                            id="importConfig"
+                          />
+                          <button 
+                            className="btn btn-secondary"
+                            onClick={() => {
+                              const configText = document.getElementById('importConfig').value;
+                              try {
+                                const config = JSON.parse(configText);
+                                setTableName(config.tableName || 'table1');
+                                setColumns(config.columns || []);
+                                setDatabaseType(config.databaseType || 'mysql');
+                                setRowCount(config.rowCount || 25);
+                                toast.success('Configuration imported successfully!');
+                              } catch (error) {
+                                toast.error('Invalid configuration format');
+                              }
+                            }}
+                          >
+                            Import Configuration
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
